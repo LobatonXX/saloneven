@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reservaciones - Salón de Eventos</title>
+    <link rel="stylesheet" href="estilos.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.0/main.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.0/main.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/signature_pad@2.3.2/dist/signature_pad.min.js"></script>
+    <script src="contrato.js" defer></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var calendarEl = document.getElementById("calendar");
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: "dayGridMonth",
+                dateClick: function (info) {
+                    alert("Fecha seleccionada: " + info.dateStr);
+                },
+            });
+            calendar.render();
+        });
+    </script>
+</head>
+<body>
+<header>
+    <nav class="header-wrap">
+        <h1>Eventos CI Excelencia</h1>
+        <ul class="main-menu">
+            <li class="menu-item"><a href="index.html">Inicio</a></li>
+            <li class="menu-item"><a href="eventos.html">Eventos</a></li>
+            <li class="menu-item"><a href="reservaciones.html">Reservaciones</a></li>
+            <li class="menu-item"><a href="fechasdis.php">Fechas Disponibles</a></li>
+            <li class="menu-item"><a href="servicios.html">Servicios</a></li>
+        </ul>
+    </nav>
+</header>
+<div class="wrap-title-section"><h2>Registro para Reservar</h2></div>
+
+<section>
+  <!--<form id="reservaciones" onsubmit="handleSubmit(event)">-->
+    <form id="reservaciones" action = 'enviar.php' method = "POST"></form>
+    <label>Nombre Completo:<input type="text" name="nombre" required/></label>
+    <label>Telefono:<input type="text" name="telefono" required/></label>
+    <label>Correo:<input type="email" name="correo" required/></label>
+    <label>Direccion:<input type="text" name="direccion" required/></label>
+    <label>Tipo de evento:
+        <select name="evento" required>
+            <option value="Boda">Boda</option>
+            <option value="Bautizo">Bautizo</option>
+            <option value="XV años">XV años</option>
+            <option value="Graduacion">Graduacion</option>
+            <option value="Otro">Otro</option>
+        </select>
+    </label>
+    <label>Fecha del evento:<input type="date" name="fechaEvento" required /></label>
+    <label>Hora de inicio del evento:<input type="time" name="horaIni" required/></label>
+    <label>Hora de termino del evento:<input type="time" name="horaFin" required/></label>
+    
+    <label for="paquete">Seleccione un paquete:
+      <select id="paquete" name="paquete" required>
+          <option value="Basico">Paquete Básico ($8,500)</option>
+          <option value="Premium">Paquete Premium ($12,500)</option>
+      </select>
+  </label>
+
+    <label for="servicios">Seleccione Servicios Adicionales:</label>
+    <ul id="servicios-list">
+        <li><input type="checkbox" name="serviciosAd[]" value="servAd1" id="servAd1"> <label for="servAd1">Robot</label></li>
+        <li><input type="checkbox" name="serviciosAd[]" value="servAd2" id="servAd2"> <label for="servAd2">Botarga</label></li>
+        <li><input type="checkbox" name="serviciosAd[]" value="servAd3" id="servAd3"> <label for="servAd3">Orquesta</label></li>
+        <li><input type="checkbox" name="serviciosAd[]" value="servAd4" id="servAd4"> <label for="servAd4">DJ</label></li>
+        <li><input type="checkbox" name="serviciosAd[]" value="servAd5" id="servAd5"> <label for="servAd5">Fotografía y video del evento</label></li>
+        <li><input type="checkbox" name="serviciosAd[]" value="servAd6" id="servAd6"> <label for="servAd6">Banquete para 100 personas más</label></li>
+        <li><input type="checkbox" name="serviciosAd[]" value="servAd7" id="servAd7"> <label for="servAd7">Banquete para 50 personas más</label></li>
+    </ul>
+
+    <label for="menu">Seleccione su Entrada:
+        <select id="entrada" name="entrada">
+            <option value="crema1">Crema de Elote</option>
+            <option value="crema2">Crema de Brocoli</option>
+            <option value="crema3">Crema de Calabaza</option>
+            <option value="crema4">Crema de Nuez</option>
+        </select>
+    </label>
+
+    <label for="menu">Seleccione su Segundo Tiempo:
+        <select id="segundoT" name="segundoT">
+            <option value="Pasta1">Pasta Hawaiana</option>
+            <option value="Pasta2">Pasta Alfredo</option>
+            <option value="Pasta3">Pasta Italiana</option>
+        </select>
+    </label>
+
+    <label for="menu">Seleccione su Plato Fuerte:
+        <select id="platoF" name="platoF">
+            <option value="plato1">Pechuga cordon bleu</option>
+            <option value="plato2">Lomo relleno de jamón con queso</option>
+            <option value="plato3">Lomo en adobo</option>
+        </select>
+    </label>
+
+    <label for="menu">Seleccione su Guarnición:
+        <select id="guarniciones" name="guarniciones">
+            <option value="guar1">Verduras a la mantequilla</option>
+            <option value="guar2">Papas cambray salteadas al perejil</option>
+            <option value="guar3">Ensalada Rusa</option>
+            <option value="guar4">Chayotes a la crema</option>
+        </select>
+    </label>
+
+    <label>Observaciones:<textarea name="observaciones" cols="30" rows="5"></textarea></label>
+    <button type="submit">Generar Contrato</button>
+</form>
+
+</section>
+
+<div class="wrap-title-section"><h2>Paquetes</h2></div>
+
+<div>
+    <div>
+        <form action="servicios.html" method="get">
+            <h2>Servicios Adicionales</h2>
+            <ul>
+                <li>Robot $1000 (1 hora)</li>
+                <li>Botarga $550 (30min)</li>
+                <li>Servicio de Coctelería $700</li>
+                <li>Mariachi $3500</li>
+                <li>Orquesta en vivo $6500</li>
+                <li>Banquete para 100 personas más $8000</li>
+                <li>Banquete para 50 personas más $6500</li>
+            </ul>
+            <button type="submit">Ver Servicios</button>
+        </form>
+    </div>
+
+    <div>
+        <form action="menus.html" method="get">
+            <h2>Menus</h2>
+            <li>Nuestros menus para todo tipo de eventos</li>
+            <br><button type="submit">Ver menús</button>
+        </form>
+    </div>
+
+    <div>
+        <h2>Paquete Básico</h2>
+        <ul>
+            <li>Renta de salón 5 horas</li>
+            <li>Mobiliario completo</li>
+            <li>Banquete para 100 personas</li>
+            <li>Servicio de Meseros</li>
+            <li>Animador</li>
+            <li>DJ</li>
+            <li>Valet Parking</li>
+        </ul>
+        <div class="price">$8,500</div>
+
+        <h2>Paquete Premium</h2>
+        <ul>
+            <li>Renta de salón 8 horas</li>
+            <li>Mobiliario completo</li>
+            <li>Banquete para 200 personas</li>
+            <li>Fotografía y video del evento</li>
+            <li>Servicio de Meseros</li>
+            <li>Animador</li>
+            <li>Grupo en vivo</li>
+            <li>Valet Parking</li>
+            <li>Coctelería</li>
+        </ul>
+        <div class="price">$12,500</div>
+    </div>
+</div>
+
+<footer>&copy; 2024 Salón de Eventos "Eventos CI Excelencia"</footer>
+</body>
+</html>
