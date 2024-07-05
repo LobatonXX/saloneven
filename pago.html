@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medios de Pago - Salón de Eventos</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+
+    <header>
+        <nav class="header-wrap">
+            <h1>Eventos CI Excelencia</h1>
+            <ul class="main-menu">
+                <li class="menu-item"><a href="index.html">Inicio</a></li>
+                <li class="menu-item"><a href="eventos.html">Eventos</a></li>
+                <li class="menu-item"><a href="reservaciones.html">Reservaciones</a></li>
+                <li class="menu-item"><a href="fechasdis.php">Fechas Disponibles</a></li>
+                <li class="menu-item"><a href="servicios.html">Servicios</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section>
+            <div class="imagen-galeria"><img src="images/medios.jpg" ></div>
+
+            <div class="imagen-galeria"><img src="images/contacto.jpg" ></div>
+
+        <div class="numero-cuenta">
+            <form action="pago.php" method="post">
+                <label for="numero_cuenta">Número de Cuenta:</label>
+                <input type="text" id="numero_referencia" name="numero_referencia" required>
+                <label for="fecha_reservacion">Fecha de Reservación:</label>
+                <input type="date" id="fecha_reservacion" name="fecha_reservacion" required>
+                <button type="submit">Apartar</button>
+            </form>
+        </div>
+
+    </section>
+
+    <footer>
+        &copy; 2024 Salón de Eventos "Eventos CI Excelencia"
+    </footer>
+
+</body>
+</html>
