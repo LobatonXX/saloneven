@@ -2,7 +2,7 @@
 // Conexión a la base de datos
 $servername = "server-brenda.mysql.database.azure.com";
 $username = "lobaton";
-$password = "Diego>brr202609";
+$password = "Diego:brr202609";
 $dbname = "salonbd"; 
 
 // Crear conexión
