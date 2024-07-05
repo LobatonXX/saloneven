@@ -1,8 +1,8 @@
 <?php
 // Conexión a la base de datos
-$servername = "localhost";
-$username = "root";
-$password = "";
+$servername = "server-brenda.mysql.database.azure.com";
+$username = "lobaton";
+$password = "Diego>brr202609";
 $dbname = "salonbd"; 
 
 // Crear conexión

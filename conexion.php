@@ -1,8 +1,8 @@
 <?php
-$host = 'localhost';
-$db = 'salonbd';
-$user = 'root';
-$pass = '';
+$servername = "server-brenda.mysql.database.azure.com";
+$username = "lobaton";
+$password = "Diego>brr202609";
+$dbname = "salonbd"; 
 
 // Crear conexión
 $conn = new mysqli($host, $user, $pass, $db);
